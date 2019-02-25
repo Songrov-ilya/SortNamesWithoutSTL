@@ -4,4 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        main.cpp
+        main.cpp \
+    ProductionNames.cpp \
+    SortQuickNames.cpp
+
+HEADERS += \
+    ProductionNames.h \
+    SortQuickNames.h
