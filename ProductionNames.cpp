@@ -34,11 +34,13 @@ void ProductionNames::readFileNames()
             }
             arrAllNamesP[countNames] = anyName;
 
+            for (int var = 0; var < countLetters; ++var) {
+                temporaryName[var] = '\0';
+            }
             countNames++;
             countLetters = 0;
         }
 
-//        cout << "countNames = " << countNames << endl;
         generateAdditionalNames(countNames, arrAllNamesP);
 
     }
@@ -56,7 +58,7 @@ int ProductionNames::sizeArray(const char *arr)
     int var = 0;
     for (;;)
     {
-        if(arr[var] == '\0'){
+        if(arr[var] == '\0' || var >= 100){
             return var;
         }
         ++var;
@@ -103,8 +105,8 @@ void ProductionNames::generateAdditionalNames(int &countReadNames, char **arrAll
     const int countUniqueNames = countReadNames;
     for (int var = countUniqueNames; var < 5001; ++var)
     {
-        int firstName = rand() % (countUniqueNames);
-        int secondName = rand() % (countUniqueNames);
+        int firstName = rand() % countUniqueNames + 1;
+        int secondName = rand() % countUniqueNames + 1;
         int countLettersFirst = sizeArray(arrAllNames[firstName]);
         int countLettersSecond = sizeArray(arrAllNames[secondName]);
         int countLettersSuperName = countLettersFirst + countLettersSecond;
@@ -117,7 +119,6 @@ void ProductionNames::generateAdditionalNames(int &countReadNames, char **arrAll
         for (int var = 0; var < countLettersSecond; ++var) {
             arrAllNames[countReadNames][var + countLettersFirst] = arrAllNames[secondName][var];
         }
-//        cout << arrAllNames[countReadNames] << "::" << endl;
         countReadNames++;
     }
     --countReadNames;

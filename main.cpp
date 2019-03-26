@@ -1,7 +1,6 @@
 #include <iostream>
 #include "ProductionNames.h"
 #include "SortQuickNames.h"
-//#include <gtest/gtest.h>
 
 
 
@@ -22,8 +21,9 @@ int main(/*int argc, char *argv[]*/)
     SortQuickNames sortClass;
     sortClass.sortNames(arrAllNames, productionNames.getNumberAllNames());
 
-    productionNames.printAllNames();
+//    productionNames.printAllNames();
 
+    std::cout << productionNames.getNumberAllNames() << std::endl;
     productionNames.writeFileNames();
 
 
